@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -7,6 +7,7 @@ const People = () => {
 
     const {id}=useParams()
     const [person, setPerson]=useState()
+    const navigate=useNavigate()
 
     //will only trigger once, so if person tries to return another person it wont change
     useEffect(()=>{
@@ -15,7 +16,8 @@ const People = () => {
             console.log(response.data)
             setPerson(response.data)
         })
-        .catch(err=>console.log(err))
+        .catch(err=>{console.log(err)
+        navigate("/error")})
     },[id])//add the bracket and id in this line so when id changes the page refreash?
 
   return (
@@ -28,7 +30,7 @@ const People = () => {
           <h3>Mass:{person.mass}</h3>
           <h3>Hair Color:{person.hair_color}</h3>
           <h3>Skin Color: {person.skin_color}</h3>
-        </div>:"err"
+        </div>:"Loading"
       }
     </div>
   )

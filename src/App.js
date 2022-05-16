@@ -5,17 +5,19 @@ import Search from './components/Search';
 import Something from './components/Something';
 import People from './components/People';
 import Planet from './components/Planet';
+import Err from './components/Err';
 
 function App() {
   return (
     <BrowserRouter>
     <Search/>
-    <Routes>
+      <Routes>
 
-    <Route path="/people/:id" element={<People/>}/>
-    <Route path="/planets/:id" element={<Planet/>}/>
+        <Route path="/people/:id" element={<People/>}/>
+        <Route path="/planets/:id" element={<Planet/>}/>
+        <Route path="/error" element={<Err/>}/>
 
-    </Routes>
+      </Routes>
     </BrowserRouter>
   );
 }
